@@ -17,15 +17,34 @@ Once created, RegEx objects can be used with methods on both the RegEx Object an
 
 ### RegExp object methods
 
-- test
-- exec
+#### .test()
+
+Returns true if the pattern is found in passed string, false if not
+
+#### .exec()
+
+Returns an array of matchs from passed in string. Will always only return first instance (even if `/g` flag is used). Also provides additional info:
+
+- index - shows where match occured
+- input - the passed in string
 
 ### String object methods
 
-- match
-- search
-- replace
-- split
+#### .match()
+
+Returns the same array as the .exec() method above when no `/g` flag is used. If `/g` is used, will return an array of all matches, but no additional info.
+
+#### .search()
+
+Returns the index of the matched string.
+
+#### .replace()
+
+Returns a string that has replaced a match of the regex expression with the passed in string
+
+#### .split()
+
+Returns an array of strings split on regex matches.
 
 ### Regular Expression Flags
 
