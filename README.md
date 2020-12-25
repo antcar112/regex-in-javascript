@@ -14,4 +14,4 @@ const regex1 = new RegExp("hello")
 const regex2 = /world/
 ```
 
-Once created, RegEx objects can be used with methods on both the RegEx Object and the String wrapper object.
+Once created, RegEx objects can be used with methods on both the RegEx Object and the String object wrapper.
