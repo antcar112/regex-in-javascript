@@ -1,11 +1,9 @@
-const txt = 'Programming courses always starts with a hello world example.'
+const txt = 'Programming courses alwayS starts with a hello world example.'
 
 const regex1 = new RegExp('hello')
 const regex2 = /world/
 
-/**
- * RegExp object methods
- */
+// RegExp object methods
 
 /**
  * .test()
@@ -25,9 +23,7 @@ const test2 = regex2.test(txt)
 const exec = regex1.exec(txt)
 // console.log(exec)
 
-/**
- * String object wrapper methods
- */
+// String object wrapper methods
 
 /**
  * .match()
@@ -58,3 +54,9 @@ const split1 = txt.split(regex1)
 // splits on spaces
 const split2 = txt.split(/\s/)
 // console.log(split1, split2)
+
+// Flags
+const regex3 = /s\s/gi // represents: 's '
+console.log(txt.match(regex3))
+console.log(regex3.exec(txt))
+console.log(regex3.exec(txt))
