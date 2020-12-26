@@ -114,3 +114,60 @@ Control characters are used to match non-printed characters.
 - `\v` - vertical tab
 - `\n` - newline
 - `\r` - carriage return
+
+## 3. Characters Sets
+
+Character sets allow multiple characters to satisfy a RegEx expression. For example, if we want to account for both "grey" and "gray", we could use a character set.
+
+```
+const regex = /gr[ae]y/
+
+regex.test('gray') // returns true
+regex.test('grey') // returns true
+```
+
+This character set says to only match one character in the set.
+
+```
+regex.test('graey') // returns false
+```
+
+Multiple character sets can be used together.
+
+```
+const multi = /[abcd][123][xyz]/g
+```
+
+Inside a character set, metacharacters don't act as metacharacters. Instead, they operate as their character.
+
+```
+const text = 'Make the outline for the square gray and the fill for the circle grey.'
+const regex = /gr[ae]y[ .]/g
+
+text.match(regex)
+// returns ['gray ', 'grey.']
+```
+
+### Specifying a Range in a Character Set
+
+Ranges simplify consecutive characters in character sets. Ranges work with both digits and letters.
+
+```
+/[1234]/ == /[1-4]/
+/[abcde]/ == /[a-e]/
+```
+
+Note: the `-` acts as a metacharacter in a character set. This is one exception to the rule above. If we want to use a `-` in a character set, we can escape it.
+
+```
+/[\-.]/
+```
+
+How do we capture all numbers between 10 and 30?
+
+```
+const text = '13 - 25'
+const regex = /[10-30]/g
+```
+
+This character set will match 1, a range of 0-3, and 0, not 10 to 30 like we want.
