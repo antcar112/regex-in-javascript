@@ -1,0 +1,20 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,100italic|Roboto+Mono:400,100italic,700);
+
+.title {
+  font-size: 2em;
+  color: #024656;
+  font-family: 'Roboto';
+  padding-top: 2%;
+  margin-left: 20%;
+}
+
+#content {
+  position: absolute;
+  padding: 5px;
+  width: 60%;
+  margin-left: 20%;
+  font-size: 1.4em;
+  color: #024656;
+  font-family: 'Roboto';
+  display: block;
+}

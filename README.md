@@ -105,3 +105,12 @@ const escaped = /d\./g
 txt.match(escaped)
 // ['d.']
 ```
+
+#### Control Characters
+
+Control characters are used to match non-printed characters.
+
+- `\t` - tab
+- `\v` - vertical tab
+- `\n` - newline
+- `\r` - carriage return
