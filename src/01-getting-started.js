@@ -57,6 +57,6 @@ const split2 = txt.split(/\s/)
 
 // Flags
 const regex3 = /s\s/gi // represents: 's '
-console.log(txt.match(regex3))
-console.log(regex3.exec(txt))
-console.log(regex3.exec(txt))
+// console.log(txt.match(regex3))
+// console.log(regex3.exec(txt))
+// console.log(regex3.exec(txt))

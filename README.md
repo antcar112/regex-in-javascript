@@ -57,12 +57,51 @@ new RegExp("pattern", "flags)
 
 Common flags:
 
-- /g - global - match more than one occurance. Without global, only the first match is found
-- /i - case insensitive match, case doesn't matter
-- /m - multi-line match
+- `/g` - global - match more than one occurance. Without global, only the first match is found
+- `/i` - case insensitive match, case doesn't matter
+- `/m` - multi-line match
 
-Can combine multiple flags (/gi)
+Can combine multiple flags (`/gi`)
 
 ### Testing RegEx
 
 [RegEx Pal](https://www.regexpal.com/) is a very useful for testing RegEx.
+
+## 2. Specifying Characters in Regular Expressions
+
+### Metacharacters
+
+The following are metacharacters in RegEx.
+
+```
+^ $ . * + ? = ! : | \ / ( ) [ ] { }
+```
+
+#### `.` - Wildcard character
+
+The wildcard metacharacter (`.`) can be used to represent most single characters, including the tab character.
+It will not match the newline character.
+
+```
+const txt = 'how is that so hot? h t. hoot.'
+const re = /h.t/g
+
+const match = txt.match(re)
+// ['hat', 'hot', 'h t']
+```
+
+#### `\` - Esacape character
+
+Escaping a metacharacter tells the RegEx engine we only want to match on the literal value of that character.
+
+```
+const txt = 'This could be the final word.'
+
+const notEscaped = /d./g
+txt.match(notEscaped)
+// ['d ', 'd.']
+
+const escaped = /d\./g
+txt.match(escaped)
+// ['d.']
+```
