@@ -138,7 +138,7 @@ Multiple character sets can be used together.
 const multi = /[abcd][123][xyz]/g
 ```
 
-Inside a character set, metacharacters don't act as metacharacters. Instead, they operate as their character.
+Inside a character set, metacharacters don't act as metacharacters. Instead, they operate as their character. There are some exceptions to this rule [(see below)](#escaping-characters-in-a-set).
 
 ```
 const text = 'Make the outline for the square gray and the fill for the circle grey.'
@@ -148,7 +148,7 @@ text.match(regex)
 // returns ['gray ', 'grey.']
 ```
 
-### Specifying a Range in a Character Set
+### Specifying a Range (`-`)
 
 Ranges simplify consecutive characters in character sets. Ranges work with both digits and letters.
 
@@ -157,7 +157,7 @@ Ranges simplify consecutive characters in character sets. Ranges work with both 
 /[abcde]/ == /[a-e]/
 ```
 
-Note: the `-` acts as a metacharacter in a character set. This is one exception to the rule above. If we want to use a `-` in a character set, we can escape it.
+Note: the `-` acts as a metacharacter in a character set. This is an exception to the rule above. If we want to use a `-` in a character set, we can escape it.
 
 ```
 /[\-.]/
@@ -171,3 +171,31 @@ const regex = /[10-30]/g
 ```
 
 This character set will match 1, a range of 0-3, and 0, not 10 to 30 like we want.
+
+### Excluding Characters (`^`)
+
+The `^` is another metacharacter in character sets. If it appears at the start of a character set, it indicates to exclude all characters that follow.
+
+For example, the below expression will match any character other than digits 0 to 9 or letters A to F.
+
+```
+/[^0-9A-F]/
+```
+
+If we want to use the literal `^` character in a character set, we can escape it. This is only necessary if it appears at the start of the character set.
+
+```
+/[\^a-z]/ // Escape required
+/[a-z^]/  // Escape not required
+```
+
+### Escaping Metacharacters
+
+Most metacharacters don't need to be escaped in a character set. There are four metacharacters that are exceptions to this rule and _may_ need be escaped (depending on their position in the character set). It's fine to always escape these characters.
+
+| Char | Usage             | When to escape                         |
+| ---- | ----------------- | -------------------------------------- |
+| `-`  | Range             | If it is a valid range (ex. `/[a-z]/`) |
+| `^`  | Negate            | If it's at the start of the set        |
+| `\`  | Escape characters | Always need to escape                  |
+| `]`  | End of set        | Always need to escape                  |
