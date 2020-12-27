@@ -247,3 +247,11 @@ The negated whitespace shorthand.
 ```
 \S == [^ \t\r\n]
 ```
+
+## 4. Using Repetition
+
+RegEx has three metacharacters to indicate repition. These all apply to the left most previous item in the expression.
+
+- `+` - Matches one or more occurrences
+- `?` - Matches zero or one occurrences
+- `*` - Matches zero or more occurrences
