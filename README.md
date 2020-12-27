@@ -199,3 +199,51 @@ Most metacharacters don't need to be escaped in a character set. There are four 
 | `^`  | Negate            | If it's at the start of the set        |
 | `\`  | Escape characters | Always need to escape                  |
 | `]`  | End of set        | Always need to escape                  |
+
+### Shorthand for Character Sets
+
+Shorthands can be used to simplify common character sets.
+
+#### Inclusive Shorthands
+
+There are three inclusive shorthands.
+
+The digit shorthand, which includes all digits.
+
+```
+\d == [0-9]
+```
+
+The word shorthand, which includes all letters (upper and lowercase), all digitis and the underscore.
+
+```
+\w == [a-zA-Z0-9_]
+```
+
+The whitespace shorthand, which includes blank space, tab, newline and carriage return.
+
+```
+\s == [ \t\r\n]
+```
+
+#### Negated Shorthands
+
+There are also three negated shorthands. They are the same as the above inclusive shorthands, only negated. They use uppercase letters.
+
+The negated digit shorthand.
+
+```
+\D == [^0-9]
+```
+
+The negated word shorthand.
+
+```
+\W == [^a-zA-Z0-9_]
+```
+
+The negated whitespace shorthand.
+
+```
+\S == [^ \t\r\n]
+```
