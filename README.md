@@ -388,3 +388,23 @@ multiline.match(regex) // ['The', 'the']
 ```
 
 When using anchors and the multi-line flag, RegEx will look for matches either before (`$`) the new line character or after (`^`) the new line character.
+
+### Working with Word Boundaries
+
+- `\b` Word boundary - pattern bounded by a non-word character.
+- `\B` Non-word boundary - pattern bounded by a word character.
+
+These boundary characters reference position, not an actual character.
+
+```
+const txt = 'Implant this idea: plan to plant multiple trees on this planet.'
+const regex = /plan/g
+txt.match(regex) // ['plan', 'plan', 'plan', 'plan']
+```
+
+What if we only want to match the word "plan" itself, and not words like "Implant" or "plant" that contain the characters plan? We can use the word boundary character.
+
+```
+const boundryRegex = /\bplan\b/g
+txt.match(boundryRegex) // ['plan']
+```
