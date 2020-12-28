@@ -414,3 +414,23 @@ txt.match(boundryRegex) // ['plan']
 - When possible, define the quantity of repeated expressions (`{5}` rather than `*`)
 - Narrow the scope to repeated expressions (`\d` rather than `.`)
 - Provide clear starting and ending points (anchors)
+
+## 6. Alternates and Groups
+
+### Alternates
+
+Sometimes, it may be better and/or easier to simply express all the possible expressions that should be matched. For example, what if we only want to match the seven days of the week.
+
+```
+const daysOfWeek = /\b[mtwfs][a-z]{1,4}[nsir]day\b/gi
+```
+
+This expression can work, but it can also match other words, such as "somesday".
+
+A safer expression would be to use alternates and the pipe `|` operator. The pipe operator behaves much like OR in other langagues.
+
+```
+const daysOfWeek = /\bmonday|tuesday|wednesday|thursday|friday|saturday|sunday\b/gi
+```
+
+This expression is more accurate and safer than the previous one.
