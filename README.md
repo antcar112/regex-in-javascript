@@ -373,3 +373,18 @@ txt.match(end) // ['DOG']
 ```
 
 We can use both start and end metacharacters at the same time to ensure there are no other characters.
+
+### Using the Multi-line Flag
+
+When we use the multi-line flag (`\\m`) the start `^` and end `$` anchors will be applied to each line.
+
+```
+const multiline = 'The quick brown fox
+                   jumps over
+                   the lazy dog'
+
+const regex = /^the/igm
+multiline.match(regex) // ['The', 'the']
+```
+
+When using anchors and the multi-line flag, RegEx will look for matches either before (`$`) the new line character or after (`^`) the new line character.
