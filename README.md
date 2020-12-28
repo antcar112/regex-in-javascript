@@ -349,3 +349,27 @@ const min = /#[\dA-F]{6}/ig
 
 hex.match(min) // ['#00ffff', '#BA0EF2']
 ```
+
+## 5. Anchored Expressions
+
+Using anchors in RegEx allows us to define the position of a match. For example, we can ensure that matches only occur at the start of a string.
+
+### Matching at the Start and End
+
+- `^` - Anchors the match to the start of the line.
+- `$` - Anchors the match to the end of the line.
+
+```
+const txt = 'The quick brown fox dog jumps over the lazy DOG'
+
+const noAnchor = /the/ig
+txt.match(noAnchor) // ['The', 'the']
+
+const start = /^the/ig
+txt.match(start) // ['The']
+
+const end = /dog$/ig
+txt.match(end) // ['DOG']
+```
+
+We can use both start and end metacharacters at the same time to ensure there are no other characters.

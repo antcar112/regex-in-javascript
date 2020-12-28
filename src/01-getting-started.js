@@ -1,5 +1,4 @@
-// const txt = 'Programming courses alwayS starts with a hello world example.'
-const txt = "Let's starts with a hello world example."
+const txt = 'Programming courses alwayS starts with a hello world example.'
 const regex1 = new RegExp('hello')
 const regex2 = /world/
 
