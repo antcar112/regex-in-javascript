@@ -13,13 +13,22 @@ const regex1 = new RegExp("hello")
 const regex2 = /world/
 ```
 
+### RegExp object methods
+
 Once created, RegEx objects can be used with methods on both the RegEx Object and the String object wrapper.
 
-### RegExp object methods
+```
+const txt = "Let's starts with a hello world example."
+const regex = /hello/
+```
 
 #### .test()
 
-Returns true if the pattern is found in passed string, false if not
+Returns `true` if the pattern is found in passed string, `false` if it is not.
+
+```
+regex.test(txt) // true
+```
 
 #### .exec()
 
@@ -28,23 +37,54 @@ Returns an array of matchs from passed in string. Will always only return first 
 - index - shows where match occured
 - input - the passed in string
 
+```
+regex.exec(txt)
+// ["hello", index: 20, input: "Let's starts with a hello world example."]
+```
+
 ### String object methods
 
 #### .match()
 
-Returns the same array as the .exec() method above when no `/g` flag is used. If `/g` is used, will return an array of all matches, but no additional info.
+Returns the same array as the `.exec()` method above when no `/g` flag is used. If `/g` is used, will return an array of all matches, but no additional info.
+
+```
+txt.match(regex)
+// ["hello", index: 20, input: "Let's starts with a hello world example."]
+
+const greeting = 'hello, hello!'
+greeting.match(/hello/g)
+// ["hello", "hello"]
+```
 
 #### .search()
 
 Returns the index of the matched string.
 
+```
+txt.search(regex) // 20
+```
+
 #### .replace()
 
 Returns a string that has replaced a match of the regex expression with the passed in string
 
+```
+txt.replace(regex, 'hi')
+// "Let's starts with a hi world example."
+```
+
 #### .split()
 
 Returns an array of strings split on regex matches.
+
+```
+txt.split(regex)
+// ["Let's starts with a ", " world example."]
+
+txt.split(/\s/)
+// ["Let's", "starts", "with", "a", "hello", "world", "example."]
+```
 
 ### Regular Expression Flags
 

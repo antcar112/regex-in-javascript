@@ -1,5 +1,5 @@
-const txt = 'Programming courses alwayS starts with a hello world example.'
-
+// const txt = 'Programming courses alwayS starts with a hello world example.'
+const txt = "Let's starts with a hello world example."
 const regex1 = new RegExp('hello')
 const regex2 = /world/
 
@@ -53,7 +53,7 @@ const replace = txt.replace(regex1, 'hi')
 const split1 = txt.split(regex1)
 // splits on spaces
 const split2 = txt.split(/\s/)
-// console.log(split1, split2)
+console.log(split1, split2)
 
 // Flags
 const regex3 = /s\s/gi // represents: 's '
