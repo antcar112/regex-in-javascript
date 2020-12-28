@@ -430,7 +430,58 @@ This expression can work, but it can also match other words, such as "somesday".
 A safer expression would be to use alternates and the pipe `|` operator. The pipe operator behaves much like OR in other langagues.
 
 ```
-const daysOfWeek = /\bmonday|tuesday|wednesday|thursday|friday|saturday|sunday\b/gi
+const daysOfWeek = /\bmonday\b|\btuesday\b|\bwednesday\b|\bthursday\b|\bfriday\b|\bsaturday\b|\bsunday\b/gi
 ```
 
 This expression is more accurate and safer than the previous one.
+
+### Grouping
+
+Grouping uses parenthesis `( )`. Much like in other languages, using parenthesis tells the RegEx engine to evaluate that content first.
+
+What if we want to match a 10 character id that follows a letter-digit-letter pattern. Each letter is between a and e, and each number is between 1 and 5. For example, `a5b4c3d2e1`.
+
+```
+const validId = 'a5b4c3d2e1'
+const invalidId = 'a12345'
+
+const idPattern = /[a-e][1-5]{5}/g
+
+idPattern.test(validId) // false
+idPattern.test(invalidId) // true
+```
+
+The above expression doesn't work because the repeating group `{5}` is only applied to the left most character (`[1-5]`). We can solve this using grouping, so the repeating group now applies to both character sets.
+
+```
+const idPattern = /([a-e][1-5]){5}/g
+
+idPattern.test(validId) // true
+idPattern.test(invalidId) // false
+```
+
+We can also use grouping to simplify the above days of the week example.
+
+```
+const daysOfWeek = /\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/gi
+// or
+const daysOfWeek = /\b(mon|tues|wednes|thurs|fri|satur|sun)day\b/gi
+```
+
+### Grouping with JavaScript
+
+Grouping captures data. This can simplify the process of evaluating and then splitting data.
+
+For example, we are checking if a date from an input field is valid. The date follows a YYYY/MM/DD pattern. It can be seperated by "/", "-" or "." symbols. The MM and the DD can be either one or two digits. A valid RegEx expression for this would be:
+
+```
+const dateExp = /^(\d{4})[-./](\d{1,2})[-./](\d{1,2})$/
+```
+
+Note the use of groups around the year, month and day portions. We can use these groups with the `.exec()` method the easily split our date.
+
+```
+const dateInput = '2018-3-26'
+const dateArr = dateExp.exec(dateInput)
+// ['2018-3-26', '2018', '3', '26', index: 0, input: '2018-3-26']
+```
