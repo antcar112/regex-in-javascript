@@ -408,3 +408,9 @@ What if we only want to match the word "plan" itself, and not words like "Implan
 const boundryRegex = /\bplan\b/g
 txt.match(boundryRegex) // ['plan']
 ```
+
+### Tips for Accurate Regular Expressions
+
+- When possible, define the quantity of repeated expressions (`{5}` rather than `*`)
+- Narrow the scope to repeated expressions (`\d` rather than `.`)
+- Provide clear starting and ending points (anchors)
