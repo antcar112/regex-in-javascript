@@ -255,3 +255,57 @@ RegEx has three metacharacters to indicate repition. These all apply to the left
 - `+` - Matches one or more occurrences
 - `?` - Matches zero or one occurrences
 - `*` - Matches zero or more occurrences
+
+### Greediness and Laziness
+
+By default, regular expressions will try to match as many characters as possible. This is also known as being greedy.
+
+```
+const txt = 'hello hi hey'
+const regex = /h[a-z]+/g
+
+txt.match(regex) // ['hello', 'hi', 'hey']
+```
+
+This greedy behaviour can sometimes cause issues.
+
+```
+const html = '<p>My first paragraph</p><p>Paragraph number 2.</p>'
+const greedyRegex = /<p>.*<\/p>/
+
+html.match(greedyRegex) // ['<p>My first paragraph</p><p>Paragraph number 2.</p>']
+```
+
+What if we only want the first `<p>` tag? In this example, you can see that both tags are selected. This happens because the RegEx engine is greedy and wants to match as many characters as possible.
+
+We can fix this by making a RegEx expression lazy. This means that it grab as few characters as possible to satisfy an expression. We can do this using the `?` metacharacter.
+
+```
+const lazyRegex = /<p>.*?<\/p>/
+
+html.match(lazyRegex) // ['<p>My first paragraph</p>']
+```
+
+### Specifying Repitition Amount
+
+We can use `{ }` to specify how many repittions we want.
+
+- `{min, max}` - Matches min to max occurances
+- `{min}` - Matches min occurances
+- `{min,}` - Matches min or more occurances
+
+```
+const txt = 'Hello there my wholesome dude'
+const minMax = /\w{3,5}/g
+const minMore = /\w{5,}/g
+
+txt.match(minMax) // ['Hello', 'there', 'dude']
+txt.match(minMore) // ['Hello', 'there', 'wholesome']
+```
+
+```
+const hex = 'Here are some hex numbers: #00ffff, #BA0EF2'
+const min = /#[\dA-F]{6}/ig
+
+hex.match(min) // ['#00ffff', '#BA0EF2']
+```
