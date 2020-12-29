@@ -478,10 +478,60 @@ For example, we are checking if a date from an input field is valid. The date fo
 const dateExp = /^(\d{4})[-./](\d{1,2})[-./](\d{1,2})$/
 ```
 
-Note the use of groups around the year, month and day portions. We can use these groups with the `.exec()` method the easily split our date.
+Note the use of groups around the year, month and day portions. We can use these groups with the `.exec()` method the easily split our date into the year, month and day.
 
 ```
 const dateInput = '2018-3-26'
 const dateArr = dateExp.exec(dateInput)
 // ['2018-3-26', '2018', '3', '26', index: 0, input: '2018-3-26']
 ```
+
+### Capturing Groups
+
+Parenthesis `( )` in RegEx are commonly referred to as capturing groups. This is because these groups can be used and referred to later.
+
+```
+const txt = yoyo
+const regex = /(yo)\1/g
+
+txt.match(regex) // ['yoyo']
+```
+
+In the example above, the `\1` refers to the first capturing group, or `(yo)`. **Note:** this capture group (`\1`) refers to the characters in the match, not the actual pattern. We can show this by adding a capture group our date expression above.
+
+```
+const dateExp = /^(\d{4})[-./](\d{1,2})[-./]\2$/ // note the \2
+
+const dateMatch = '2018-8-8'
+dateMatch.test(dateExp) // true
+
+const noDateMatch = '2018-8-20'
+noDateMatch.test(dateExp) // false
+```
+
+We can also change our date expression like this:
+
+```
+const dateExp = /^(\d{4})([-./])(\d{1,2})\2(\d{1,2})$/
+
+const validDate = '2018/8/20'
+validDate.test(dateExp) // true
+
+const invalidDate = '2018-8/20'
+invalidDate.test(dateExp) // false
+```
+
+There are two benefits to this new date expression.
+
+1. It forces the user to use the same seperator character ('/', '-' or '.' )
+2. It reduces duplication in the regular expression (`[-./]` was repeated)
+
+#### Non-capturing Group
+
+We can make a group non-capturing by adding a `?:` to the start of it.
+
+```
+const dateExp = /^(?:\d{4})([-./])(?:\d{1,2})\1(?:\d{1,2})$/
+```
+
+Making a group non-capturing will remove it from the array that the `.exec()` method return.
