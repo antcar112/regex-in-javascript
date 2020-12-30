@@ -641,11 +641,20 @@ This is a simple solution to match an email address.
 
 ```js
 const email = 'something@domain.com'
-const simpleEmailRegEx = /.+@.+\..+/g
+const simpleEmailRegEx = /.+@.+\..+/
 ```
 
 However, there are certain symbols that can't appear in an email address (ex. `'@'` or `\s`) that the above expression doesn't account for. We can improve this like this.
 
 ```js
-const emailRegEx = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/g
+const emailRegEx = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/
+```
+
+### 8.2. Matching a Twitter Name
+
+This expression will match a Twitter username.
+
+```js
+const twitterName = '@user_name1234'
+const twitterRegEx = /^@\w+$/
 ```
