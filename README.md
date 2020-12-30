@@ -199,8 +199,8 @@ Ranges simplify consecutive characters in character sets. Ranges work with both 
 
 Note: the `-` acts as a metacharacter in a character set. This is an exception to the rule above. If we want to use a `-` in a character set, we can escape it.
 
-```js
-;/[\-.]/
+```
+/[\-.]/
 ```
 
 How do we capture all numbers between 10 and 30?
@@ -218,13 +218,13 @@ The `^` is another metacharacter in character sets. If it appears at the start o
 
 For example, the below expression will match any character other than digits 0 to 9 or letters A to F.
 
-```js
-;/[^0-9A-F]/
+```
+/[^0-9A-F]/
 ```
 
 If we want to use the literal `^` character in a character set, we can escape it. This is only necessary if it appears at the start of the character set.
 
-```js
+```
 /[\^a-z]/ // Escape required
 /[a-z^]/  // Escape not required
 ```
@@ -250,20 +250,20 @@ There are three inclusive shorthands.
 
 The digit shorthand, which includes all digits.
 
-```js
+```
 \d == [0 - 9]
 ```
 
 The word shorthand, which includes all letters (upper and lowercase), all digitis and the underscore.
 
-```js
+```
 \w == [a - zA - Z0 - 9_]
 ```
 
 The whitespace shorthand, which includes blank space, tab, newline and carriage return.
 
-```js
-\s == [\t\t\r\t\r\n]
+```
+\s == [ \t\n\r]
 ```
 
 #### Negated Shorthands
@@ -272,19 +272,19 @@ There are also three negated shorthands. They are the same as the above inclusiv
 
 The negated digit shorthand.
 
-```js
+```
 \D == [^0-9]
 ```
 
 The negated word shorthand.
 
-```js
+```
 \W == [^a-zA-Z0-9_]
 ```
 
 The negated whitespace shorthand.
 
-```js
+```
 \S == [^ \t\r\n]
 ```
 
