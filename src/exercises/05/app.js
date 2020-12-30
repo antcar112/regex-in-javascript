@@ -19,8 +19,7 @@ const firstLast = names
     if (!nameArray) {
       return null
     }
-    const [lol, last, first] = nameArray
-    console.log(lol)
+    const [, last, first] = nameArray
     return `${first} ${last}`
   })
   .filter((name) => name !== null)
