@@ -596,3 +596,37 @@ const pwReg = /^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?!.*\d).*$/
 pwReg.test('ValidPassword') // true
 pwReg.test('InvalidP4ssword') // false
 ```
+
+## 7. Unicode with RegEx
+
+We may want to reference characters in RegEx expressions with unicode values. We can do this by escaping the unicode.
+
+```js
+const unicodeRegEx = /\u0065/
+```
+
+Unicode values can be used like any other character.
+
+```js
+const unicodeRegEx = /[\u0061-\u0067]/g
+```
+
+### 7.1. ES6 Unicode
+
+Some unicode characters require more than 4 hexidecimal characters.
+
+```
+/\u1D11E/ === 𝄞
+```
+
+RegEx considers these longer unicodes as 2 seperate characters.
+
+```
+𝄞 === /\uD834\uDD1E/
+```
+
+However, with ES6, we can use a new `u` flag. This tells RegEx to use the longer, single character code. We can then pass in longer unicode values inside `{ }`.
+
+```js
+const unicodeFlag = /\u{1D11E}/gu
+```
