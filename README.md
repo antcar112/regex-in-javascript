@@ -658,3 +658,39 @@ This expression will match a Twitter username.
 const twitterName = '@user_name1234'
 const twitterRegEx = /^@\w+$/
 ```
+
+### 8.3. Testing Passwords
+
+When testing passwords, we generally want to:
+
+1. Check that it's a certain length
+2. Contain at least 1 uppercase letter
+3. Contain at least 1 lowercase letter
+4. Contain at least 1 number
+5. Contain at least 1 special character
+
+We can do this using seperate expressions, and then confirm the password fits each expression
+
+```js
+const length = /^.{8,32}$/
+const upperCase = /[A-Z]/
+const lowerCase = /[a-z]/
+const digits = /[0-9]/
+const special = /[^0-9A-Za-z]/
+
+const isValidPassword = (password) =>
+  length.test(password) &&
+  upperCase.test(password) &&
+  lowerCase.test(password) &&
+  digits.test(password) &&
+  special.test(password)
+
+const validPassword = isValidPassword('My_S4fe_PaSSw0rd!') // true
+const invalidPassword = isValidPassword('notvalid') // false
+```
+
+Alternatively, we can combine all these conditions into one expression using lookahead groups.
+
+```js
+const passwordRegEx = /^(?=.{8,32})(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^0-9A-Za-z]).*$/
+```
