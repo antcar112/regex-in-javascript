@@ -379,11 +379,11 @@ We can use both start and end metacharacters at the same time to ensure there ar
 When we use the multi-line flag (`\\m`) the start `^` and end `$` anchors will be applied to each line.
 
 ```js
-const multiline = 'The quick brown fox
+const multiline = `The quick brown fox
                    jumps over
-                   the lazy dog'
+                   the lazy dog`
 
-const regex = /^the/igm
+const regex = /^the/gim
 multiline.match(regex) // ['The', 'the']
 ```
 
@@ -550,7 +550,7 @@ const noMatch = 'ab'
 backRef.test(noMatch) // false
 ```
 
-### Lookahead Groups
+### Positive Lookahead Groups
 
 Lookahead groups (`?=`) allow us to use a particular pattern to determine a match, but everything in that group will not be part of the results.
 
@@ -580,6 +580,19 @@ Lookahead groups can be used together to contain a certain set of characters in 
 
 ```js
 const pwReg = /^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*\d).*$/
+pwReg.test('ValidP4ssword') // true
+pwReg.test('invalid') // false
 ```
 
 The lookahead groups are forcing the password the satisfy each lookahead group. However, the `.*` at the end is what the password is actually matching.
+
+### Negative Lookahead Groups
+
+Negative lookahead groups are identical to lookahead groups, only they force matches only when a certain pattern does not exist. Negative lookahead groups use `?!`.
+
+```js
+// Note the negative lookahead group with digits
+const pwReg = /^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?!.*\d).*$/
+pwReg.test('ValidPassword') // true
+pwReg.test('InvalidP4ssword') // false
+```
