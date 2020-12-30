@@ -622,11 +622,30 @@ Some unicode characters require more than 4 hexidecimal characters.
 RegEx considers these longer unicodes as 2 seperate characters.
 
 ```
-𝄞 === /\uD834\uDD1E/
+/\uD834\uDD1E/ === 𝄞
 ```
 
 However, with ES6, we can use a new `u` flag. This tells RegEx to use the longer, single character code. We can then pass in longer unicode values inside `{ }`.
 
 ```js
 const unicodeFlag = /\u{1D11E}/gu
+```
+
+## 8. Common Regular Expression Recipes
+
+This is a collection of common use cases for RegEx.
+
+### 8.1. Matching an Email Address
+
+This is a simple solution to match an email address.
+
+```js
+const email = 'something@domain.com'
+const simpleEmailRegEx = /.+@.+\..+/g
+```
+
+However, there are certain symbols that can't appear in an email address (ex. `'@'` or `\s`) that the above expression doesn't account for. We can improve this like this.
+
+```js
+const emailRegEx = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/g
 ```
