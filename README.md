@@ -8,8 +8,8 @@ In JavaScript, Regular Expressions are Objects.
 
 There are two ways to create RegEx Objects:
 
-```
-const regex1 = new RegExp("hello")
+```js
+const regex1 = new RegExp('hello')
 const regex2 = /world/
 ```
 
@@ -17,7 +17,7 @@ const regex2 = /world/
 
 Once created, RegEx objects can be used with methods on both the RegEx Object and the String object wrapper.
 
-```
+```js
 const txt = "Let's starts with a hello world example."
 const regex = /hello/
 ```
@@ -26,7 +26,7 @@ const regex = /hello/
 
 Returns `true` if the pattern is found in passed string, `false` if it is not.
 
-```
+```js
 regex.test(txt) // true
 ```
 
@@ -37,7 +37,7 @@ Returns an array of matchs from passed in string. Will always only return first 
 - index - shows where match occured
 - input - the passed in string
 
-```
+```js
 regex.exec(txt)
 // ["hello", index: 20, input: "Let's starts with a hello world example."]
 ```
@@ -48,7 +48,7 @@ regex.exec(txt)
 
 Returns the same array as the `.exec()` method above when no `/g` flag is used. If `/g` is used, will return an array of all matches, but no additional info.
 
-```
+```js
 txt.match(regex)
 // ["hello", index: 20, input: "Let's starts with a hello world example."]
 
@@ -61,7 +61,7 @@ greeting.match(/hello/g)
 
 Returns the index of the matched string.
 
-```
+```js
 txt.search(regex) // 20
 ```
 
@@ -69,7 +69,7 @@ txt.search(regex) // 20
 
 Returns a string that has replaced a match of the regex expression with the passed in string
 
-```
+```js
 txt.replace(regex, 'hi')
 // "Let's starts with a hi world example."
 ```
@@ -78,7 +78,7 @@ txt.replace(regex, 'hi')
 
 Returns an array of strings split on regex matches.
 
-```
+```js
 txt.split(regex)
 // ["Let's starts with a ", " world example."]
 
@@ -90,7 +90,7 @@ txt.split(/\s/)
 
 Flags can be added to RegEx in two ways
 
-```
+```js
 /pattern/flags
 new RegExp("pattern", "flags)
 ```
@@ -122,7 +122,7 @@ The following are metacharacters in RegEx.
 The wildcard metacharacter (`.`) can be used to represent most single characters, including the tab character.
 It will not match the newline character.
 
-```
+```js
 const txt = 'how is that so hot? h t. hoot.'
 const re = /h.t/g
 
@@ -134,7 +134,7 @@ const match = txt.match(re)
 
 Escaping a metacharacter tells the RegEx engine we only want to match on the literal value of that character.
 
-```
+```js
 const txt = 'This could be the final word.'
 
 const notEscaped = /d./g
@@ -159,7 +159,7 @@ Control characters are used to match non-printed characters.
 
 Character sets allow multiple characters to satisfy a RegEx expression. For example, if we want to account for both "grey" and "gray", we could use a character set.
 
-```
+```js
 const regex = /gr[ae]y/
 
 regex.test('gray') // returns true
@@ -168,19 +168,19 @@ regex.test('grey') // returns true
 
 This character set says to only match one character in the set.
 
-```
+```js
 regex.test('graey') // returns false
 ```
 
 Multiple character sets can be used together.
 
-```
+```js
 const multi = /[abcd][123][xyz]/g
 ```
 
 Inside a character set, metacharacters don't act as metacharacters. Instead, they operate as their character. There are some exceptions to this rule [(see below)](#escaping-characters-in-a-set).
 
-```
+```js
 const text = 'Make the outline for the square gray and the fill for the circle grey.'
 const regex = /gr[ae]y[ .]/g
 
@@ -192,20 +192,20 @@ text.match(regex)
 
 Ranges simplify consecutive characters in character sets. Ranges work with both digits and letters.
 
-```
+```js
 /[1234]/ == /[1-4]/
 /[abcde]/ == /[a-e]/
 ```
 
 Note: the `-` acts as a metacharacter in a character set. This is an exception to the rule above. If we want to use a `-` in a character set, we can escape it.
 
-```
-/[\-.]/
+```js
+;/[\-.]/
 ```
 
 How do we capture all numbers between 10 and 30?
 
-```
+```js
 const text = '13 - 25'
 const regex = /[10-30]/g
 ```
@@ -218,13 +218,13 @@ The `^` is another metacharacter in character sets. If it appears at the start o
 
 For example, the below expression will match any character other than digits 0 to 9 or letters A to F.
 
-```
-/[^0-9A-F]/
+```js
+;/[^0-9A-F]/
 ```
 
 If we want to use the literal `^` character in a character set, we can escape it. This is only necessary if it appears at the start of the character set.
 
-```
+```js
 /[\^a-z]/ // Escape required
 /[a-z^]/  // Escape not required
 ```
@@ -250,20 +250,20 @@ There are three inclusive shorthands.
 
 The digit shorthand, which includes all digits.
 
-```
-\d == [0-9]
+```js
+\d == [0 - 9]
 ```
 
 The word shorthand, which includes all letters (upper and lowercase), all digitis and the underscore.
 
-```
-\w == [a-zA-Z0-9_]
+```js
+\w == [a - zA - Z0 - 9_]
 ```
 
 The whitespace shorthand, which includes blank space, tab, newline and carriage return.
 
-```
-\s == [ \t\r\n]
+```js
+\s == [\t\t\r\t\r\n]
 ```
 
 #### Negated Shorthands
@@ -272,19 +272,19 @@ There are also three negated shorthands. They are the same as the above inclusiv
 
 The negated digit shorthand.
 
-```
+```js
 \D == [^0-9]
 ```
 
 The negated word shorthand.
 
-```
+```js
 \W == [^a-zA-Z0-9_]
 ```
 
 The negated whitespace shorthand.
 
-```
+```js
 \S == [^ \t\r\n]
 ```
 
@@ -300,7 +300,7 @@ RegEx has three metacharacters to indicate repition. These all apply to the left
 
 By default, regular expressions will try to match as many characters as possible. This is also known as being greedy.
 
-```
+```js
 const txt = 'hello hi hey'
 const regex = /h[a-z]+/g
 
@@ -309,7 +309,7 @@ txt.match(regex) // ['hello', 'hi', 'hey']
 
 This greedy behaviour can sometimes cause issues.
 
-```
+```js
 const html = '<p>My first paragraph</p><p>Paragraph number 2.</p>'
 const greedyRegex = /<p>.*<\/p>/
 
@@ -320,7 +320,7 @@ What if we only want the first `<p>` tag? In this example, you can see that both
 
 We can fix this by making a RegEx expression lazy. This means that it grab as few characters as possible to satisfy an expression. We can do this using the `?` metacharacter.
 
-```
+```js
 const lazyRegex = /<p>.*?<\/p>/
 
 html.match(lazyRegex) // ['<p>My first paragraph</p>']
@@ -334,7 +334,7 @@ We can use `{ }` to specify how many repittions we want.
 - `{min}` - Matches min occurances
 - `{min,}` - Matches min or more occurances
 
-```
+```js
 const txt = 'Hello there my wholesome dude'
 const minMax = /\w{3,5}/g
 const minMore = /\w{5,}/g
@@ -343,9 +343,9 @@ txt.match(minMax) // ['Hello', 'there', 'dude']
 txt.match(minMore) // ['Hello', 'there', 'wholesome']
 ```
 
-```
+```js
 const hex = 'Here are some hex numbers: #00ffff, #BA0EF2'
-const min = /#[\dA-F]{6}/ig
+const min = /#[\dA-F]{6}/gi
 
 hex.match(min) // ['#00ffff', '#BA0EF2']
 ```
@@ -359,16 +359,16 @@ Using anchors in RegEx allows us to define the position of a match. For example,
 - `^` - Anchors the match to the start of the line.
 - `$` - Anchors the match to the end of the line.
 
-```
+```js
 const txt = 'The quick brown fox dog jumps over the lazy DOG'
 
-const noAnchor = /the/ig
+const noAnchor = /the/gi
 txt.match(noAnchor) // ['The', 'the']
 
-const start = /^the/ig
+const start = /^the/gi
 txt.match(start) // ['The']
 
-const end = /dog$/ig
+const end = /dog$/gi
 txt.match(end) // ['DOG']
 ```
 
@@ -378,7 +378,7 @@ We can use both start and end metacharacters at the same time to ensure there ar
 
 When we use the multi-line flag (`\\m`) the start `^` and end `$` anchors will be applied to each line.
 
-```
+```js
 const multiline = 'The quick brown fox
                    jumps over
                    the lazy dog'
@@ -396,7 +396,7 @@ When using anchors and the multi-line flag, RegEx will look for matches either b
 
 These boundary characters reference position, not an actual character.
 
-```
+```js
 const txt = 'Implant this idea: plan to plant multiple trees on this planet.'
 const regex = /plan/g
 txt.match(regex) // ['plan', 'plan', 'plan', 'plan']
@@ -404,7 +404,7 @@ txt.match(regex) // ['plan', 'plan', 'plan', 'plan']
 
 What if we only want to match the word "plan" itself, and not words like "Implant" or "plant" that contain the characters plan? We can use the word boundary character.
 
-```
+```js
 const boundryRegex = /\bplan\b/g
 txt.match(boundryRegex) // ['plan']
 ```
@@ -421,7 +421,7 @@ txt.match(boundryRegex) // ['plan']
 
 Sometimes, it may be better and/or easier to simply express all the possible expressions that should be matched. For example, what if we only want to match the seven days of the week.
 
-```
+```js
 const daysOfWeek = /\b[mtwfs][a-z]{1,4}[nsir]day\b/gi
 ```
 
@@ -429,7 +429,7 @@ This expression can work, but it can also match other words, such as "somesday".
 
 A safer expression would be to use alternates and the pipe `|` operator. The pipe operator behaves much like OR in other langagues.
 
-```
+```js
 const daysOfWeek = /\bmonday\b|\btuesday\b|\bwednesday\b|\bthursday\b|\bfriday\b|\bsaturday\b|\bsunday\b/gi
 ```
 
@@ -441,7 +441,7 @@ Grouping uses parenthesis `( )`. Much like in other languages, using parenthesis
 
 What if we want to match a 10 character id that follows a letter-digit-letter pattern. Each letter is between a and e, and each number is between 1 and 5. For example, `a5b4c3d2e1`.
 
-```
+```js
 const validId = 'a5b4c3d2e1'
 const invalidId = 'a12345'
 
@@ -453,7 +453,7 @@ idPattern.test(invalidId) // true
 
 The above expression doesn't work because the repeating group `{5}` is only applied to the left most character (`[1-5]`). We can solve this using grouping, so the repeating group now applies to both character sets.
 
-```
+```js
 const idPattern = /([a-e][1-5]){5}/g
 
 idPattern.test(validId) // true
@@ -462,7 +462,7 @@ idPattern.test(invalidId) // false
 
 We can also use grouping to simplify the above days of the week example.
 
-```
+```js
 const daysOfWeek = /\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/gi
 // or
 const daysOfWeek = /\b(mon|tues|wednes|thurs|fri|satur|sun)day\b/gi
@@ -474,13 +474,13 @@ Grouping captures data. This can simplify the process of evaluating and then spl
 
 For example, we are checking if a date from an input field is valid. The date follows a YYYY/MM/DD pattern. It can be seperated by "/", "-" or "." symbols. The MM and the DD can be either one or two digits. A valid RegEx expression for this would be:
 
-```
+```js
 const dateExp = /^(\d{4})[-./](\d{1,2})[-./](\d{1,2})$/
 ```
 
 Note the use of groups around the year, month and day portions. We can use these groups with the `.exec()` method the easily split our date into the year, month and day.
 
-```
+```js
 const dateInput = '2018-3-26'
 const dateArr = dateExp.exec(dateInput)
 // ['2018-3-26', '2018', '3', '26', index: 0, input: '2018-3-26']
@@ -490,16 +490,16 @@ const dateArr = dateExp.exec(dateInput)
 
 Parenthesis `( )` in RegEx are commonly referred to as capturing groups. This is because these groups can be used and referred to later.
 
-```
+```js
 const txt = yoyo
 const regex = /(yo)\1/g
 
 txt.match(regex) // ['yoyo']
 ```
 
-In the example above, the `\1` refers to the first capturing group, or `(yo)`. **Note:** this capture group (`\1`) refers to the characters in the match, not the actual pattern. We can show this by adding a capture group our date expression above.
+In the example above, the `\1` is known as a Group Backreference. It refers to the first capturing group, or `(yo)`. **Note:** this capture group (`\1`) refers to the characters in the match, not the actual pattern. We can show this by adding a capture group our date expression above.
 
-```
+```js
 const dateExp = /^(\d{4})[-./](\d{1,2})[-./]\2$/ // note the \2
 
 const dateMatch = '2018-8-8'
@@ -511,7 +511,7 @@ noDateMatch.test(dateExp) // false
 
 We can also change our date expression like this:
 
-```
+```js
 const dateExp = /^(\d{4})([-./])(\d{1,2})\2(\d{1,2})$/
 
 const validDate = '2018/8/20'
@@ -530,8 +530,56 @@ There are two benefits to this new date expression.
 
 We can make a group non-capturing by adding a `?:` to the start of it.
 
-```
+```js
 const dateExp = /^(?:\d{4})([-./])(?:\d{1,2})\1(?:\d{1,2})$/
 ```
 
 Making a group non-capturing will remove it from the array that the `.exec()` method return.
+
+### Group Backreferences
+
+The backreference (ex. `/1`) does not refer to the pattern, it refers to the text that was captured.
+
+```js
+const backRef = /([abcd])\1/
+
+const match = 'aa'
+backRef.test(match) // true
+
+const noMatch = 'ab'
+backRef.test(noMatch) // false
+```
+
+### Lookahead Groups
+
+Lookahead groups (`?=`) allow us to use a particular pattern to determine a match, but everything in that group will not be part of the results.
+
+How is this different from a non-capturing group? With a non-capture group, no index is created, but the non-capture group is still a part of the results (or what gets matched). With lookahead groups, the group is not part of the results.
+
+Lets write a RegEx that matches URLs, but we only care about what comes before the .com.
+
+```js
+const regex = /\w+(?=\.com)/g
+
+const url = 'ilovedogs.com'
+regex.test(url) // true
+url.match(regex) // ['ilovedogs']
+
+const noUrl = 'ilovedogs.co'
+regex.test(noUrl) // false
+```
+
+This expression only captures the url before .com, but it also forces a .com to be present.
+
+Lookahead groups can be used together to contain a certain set of characters in any order. This can be very useful with validating passwords. The password in the example below must:
+
+1. Be 8 or more characters
+2. Must have at least one uppercase letter
+3. Must have at least one lowercase letter
+4. Must have at least one digit
+
+```js
+const pwReg = /^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*\d).*$/
+```
+
+The lookahead groups are forcing the password the satisfy each lookahead group. However, the `.*` at the end is what the password is actually matching.
