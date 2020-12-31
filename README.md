@@ -737,5 +737,14 @@ const regex = /\b(?:together\W+(?:\w+\W+)*words)|(?:words\W+(?:\w+\W+)*together)
 Dates can have many different formats. In this example, we'll use the 'dd/mm/yyyy' format, but we also want to match on 'd/m/yy'.
 
 ```js
-const dateRegex = /^(3[01]|[12]\d|0?\d)\/(1[0-2]|0?\d)\/((\d{2})?\d{2})$/g
+const dateRegex = /^(3[01]|[12]\d|0?[1-9])\/(1[0-2]|0?[1-9])\/((\d{2})?\d{2})$/g
+```
+
+### 8.6. Capturing using the `String.match()` method
+
+In this example, we use regex to capture all numbers in a string, and then sum those numbers.
+
+```js
+const txt = 'First number: 32, and a second number is 100. The last number is 15.'
+const sum = txt.match(/\d+/g).reduce((total, num) => total + parseInt(num), 0)
 ```
