@@ -694,3 +694,40 @@ Alternatively, we can combine all these conditions into one expression using loo
 ```js
 const passwordRegEx = /^(?=.{8,32})(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^0-9A-Za-z]).*$/
 ```
+
+### 8.4. Using `String.replace()`
+
+The `.replace()` method can be used directly with capturing groups. For example, let's swap an array of names in "Last, First" format to be "First Last" instead.
+
+```js
+const names = ['Smith, Bob', 'Tang, Keith', 'Wei, Albert']
+const newNames = names.map(name => name.replace(/(\w+), (\w+)/, '$2 $1')
+```
+
+Note how we can use `'$1'` directly in replace to refer to the first capturing group.
+
+### 8.5. Matching a Word by another Word
+
+This example shows how we can match a word, but only if it is before another word.
+
+```js
+const str = 'Match these words together.'
+// match on 'words' but only when 'together' is directly after it.
+const regex = /\b(?:words\W+together)\b/g
+```
+
+The next example handles addtional words between our two words.
+
+```js
+const str = 'Match these words even when there are others together.'
+// match on 'words' but only when 'together' is after it at some point.
+const regex = /\b(?:words\W+(?:\w+\W+)*together)\b/g
+```
+
+This last example matches a word but only when when another word occurs before or after it.
+
+```js
+const str = 'Match together these words.'
+// match on 'words' but only when 'together' is before or after it at some point.
+const regex = /\b(?:together\W+(?:\w+\W+)*words)|(?:words\W+(?:\w+\W+)*together)\b/g
+```
