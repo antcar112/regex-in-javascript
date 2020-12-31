@@ -1,6 +1,23 @@
 # Regular Expressions in JavaScript
 
-This project is all about Regular Expressions and using them in JavaScript.
+This repo is all about Regular Expressions and using them in JavaScript. It covers the basics of RegEx, as well as using RegEx in JavaScript.
+
+A great way to test RegEx expressions is by using [RegEx Pal](https://www.regexpal.com/). It's a simple and useful tool for testing RegEx.
+
+## Table of Contents
+
+1. [Getting Started](#1-getting-started)
+   1. [RegExp Object methods](#11-regexp-object-methods)
+   2. [String Object methods](#12-string-object-methods)
+   3. [Regular Expression Flags](#13-regular-expression-flags)
+2. [Characters in Regular Expressions](#2-characters-in-regular-expressions)
+3. [Characters Sets](#3-characters-sets)
+4. [Repetition](#4-repetition)
+5. [Anchored Expressions](#5-anchored-expressions)
+6. [Alternates](#6-alternates)
+7. [Groups](#7-groups)
+8. [Unicode with RegEx](#8-unicode-with-regex)
+9. [Common Regular Expression Recipes](#9-common-regular-expression-recipes)
 
 ## 1. Getting Started
 
@@ -13,7 +30,7 @@ const regex1 = new RegExp('hello')
 const regex2 = /world/
 ```
 
-### RegExp object methods
+### 1.1 RegExp Object methods
 
 Once created, RegEx objects can be used with methods on both the RegEx Object and the String object wrapper.
 
@@ -22,7 +39,7 @@ const txt = "Let's starts with a hello world example."
 const regex = /hello/
 ```
 
-#### .test()
+#### The `.test()` method
 
 Returns `true` if the pattern is found in passed string, `false` if it is not.
 
@@ -30,7 +47,7 @@ Returns `true` if the pattern is found in passed string, `false` if it is not.
 regex.test(txt) // true
 ```
 
-#### .exec()
+#### The `.exec()` method
 
 Returns an array of matchs from passed in string. Will always only return first instance (even if `/g` flag is used). Also provides additional info:
 
@@ -42,9 +59,9 @@ regex.exec(txt)
 // ["hello", index: 20, input: "Let's starts with a hello world example."]
 ```
 
-### String object methods
+### 1.2 String Object methods
 
-#### .match()
+#### The `.match()` method
 
 Returns the same array as the `.exec()` method above when no `/g` flag is used. If `/g` is used, will return an array of all matches, but no additional info.
 
@@ -57,7 +74,7 @@ greeting.match(/hello/g)
 // ["hello", "hello"]
 ```
 
-#### .search()
+#### The `.search()` method
 
 Returns the index of the matched string.
 
@@ -65,7 +82,7 @@ Returns the index of the matched string.
 txt.search(regex) // 20
 ```
 
-#### .replace()
+#### The `.replace()` method
 
 Returns a string that has replaced a match of the regex expression with the passed in string
 
@@ -74,7 +91,7 @@ txt.replace(regex, 'hi')
 // "Let's starts with a hi world example."
 ```
 
-#### .split()
+#### The `.split()` method
 
 Returns an array of strings split on regex matches.
 
@@ -86,7 +103,7 @@ txt.split(/\s/)
 // ["Let's", "starts", "with", "a", "hello", "world", "example."]
 ```
 
-### Regular Expression Flags
+### 1.3 Regular Expression Flags
 
 Flags can be added to RegEx in two ways
 
@@ -103,11 +120,7 @@ Common flags:
 
 Can combine multiple flags (`/gi`)
 
-### Testing RegEx
-
-[RegEx Pal](https://www.regexpal.com/) is a very useful for testing RegEx.
-
-## 2. Specifying Characters in Regular Expressions
+## 2. Characters in Regular Expressions
 
 ### Metacharacters
 
@@ -288,7 +301,7 @@ The negated whitespace shorthand.
 \S == [^ \t\r\n]
 ```
 
-## 4. Using Repetition
+## 4. Repetition
 
 RegEx has three metacharacters to indicate repition. These all apply to the left most previous item in the expression.
 
@@ -415,9 +428,7 @@ txt.match(boundryRegex) // ['plan']
 - Narrow the scope to repeated expressions (`\d` rather than `.`)
 - Provide clear starting and ending points (anchors)
 
-## 6. Alternates and Groups
-
-### Alternates
+## 6. Alternates
 
 Sometimes, it may be better and/or easier to simply express all the possible expressions that should be matched. For example, what if we only want to match the seven days of the week.
 
@@ -435,7 +446,7 @@ const daysOfWeek = /\bmonday\b|\btuesday\b|\bwednesday\b|\bthursday\b|\bfriday\b
 
 This expression is more accurate and safer than the previous one.
 
-### Grouping
+## 7. Groups
 
 Grouping uses parenthesis `( )`. Much like in other languages, using parenthesis tells the RegEx engine to evaluate that content first.
 
@@ -597,7 +608,7 @@ pwReg.test('ValidPassword') // true
 pwReg.test('InvalidP4ssword') // false
 ```
 
-## 7. Unicode with RegEx
+## 8. Unicode with RegEx
 
 We may want to reference characters in RegEx expressions with unicode values. We can do this by escaping the unicode.
 
@@ -611,7 +622,7 @@ Unicode values can be used like any other character.
 const unicodeRegEx = /[\u0061-\u0067]/g
 ```
 
-### 7.1. ES6 Unicode
+### ES6 Unicode
 
 Some unicode characters require more than 4 hexidecimal characters.
 
@@ -631,11 +642,11 @@ However, with ES6, we can use a new `u` flag. This tells RegEx to use the longer
 const unicodeFlag = /\u{1D11E}/gu
 ```
 
-## 8. Common Regular Expression Recipes
+## 9. Common Regular Expression Recipes
 
 This is a collection of common use cases for RegEx.
 
-### 8.1. Matching an Email Address
+### 9.1 Matching an Email Address
 
 This is a simple solution to match an email address.
 
@@ -650,7 +661,7 @@ However, there are certain symbols that can't appear in an email address (ex. `'
 const emailRegEx = /^[^\s@]+@[^\s@.]+\.[^\s@.]+$/
 ```
 
-### 8.2. Matching a Twitter Name
+### 9.2 Matching a Twitter Name
 
 This expression will match a Twitter username.
 
@@ -659,7 +670,7 @@ const twitterName = '@user_name1234'
 const twitterRegEx = /^@\w+$/
 ```
 
-### 8.3. Testing Passwords
+### 9.3 Testing Passwords
 
 When testing passwords, we generally want to:
 
@@ -695,7 +706,7 @@ Alternatively, we can combine all these conditions into one expression using loo
 const passwordRegEx = /^(?=.{8,32})(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^0-9A-Za-z]).*$/
 ```
 
-### 8.4. Using `String.replace()`
+### 9.4 Using `String.replace()`
 
 The `.replace()` method can be used directly with capturing groups. For example, let's swap an array of names in "Last, First" format to be "First Last" instead.
 
@@ -706,7 +717,7 @@ const newNames = names.map(name => name.replace(/(\w+), (\w+)/, '$2 $1')
 
 Note how we can use `'$1'` directly in replace to refer to the first capturing group.
 
-### 8.5. Matching a Word by another Word
+### 9.5 Matching a Word by another Word
 
 This example shows how we can match a word, but only if it is before another word.
 
@@ -732,7 +743,7 @@ const str = 'Match together these words.'
 const regex = /\b(?:together\W+(?:\w+\W+)*words)|(?:words\W+(?:\w+\W+)*together)\b/g
 ```
 
-### 8.6. Validating Dates
+### 9.6 Validating Dates
 
 Dates can have many different formats. In this example, we'll use the 'dd/mm/yyyy' format, but we also want to match on 'd/m/yy'.
 
@@ -740,7 +751,7 @@ Dates can have many different formats. In this example, we'll use the 'dd/mm/yyy
 const dateRegex = /^(3[01]|[12]\d|0?[1-9])\/(1[0-2]|0?[1-9])\/((\d{2})?\d{2})$/g
 ```
 
-### 8.6. Capturing using the `String.match()` method
+### 9.6 Capturing using the `String.match()` method
 
 In this example, we use regex to capture all numbers in a string, and then sum those numbers.
 
@@ -749,7 +760,7 @@ const txt = 'First number: 32, and a second number is 100. The last number is 15
 const sum = txt.match(/\d+/g).reduce((total, num) => total + parseInt(num), 0)
 ```
 
-### 8.7. Information about a Match
+### 9.7 Information about a Match
 
 Using the same sentence as above, retrieve the starting index for the match, the length of the match, and the actual match. This only applies to the first digit (32).
 
@@ -769,7 +780,7 @@ if (execArr) {
 }
 ```
 
-### 8.8. Iterate Over Matches
+### 9.8 Iterate Over Matches
 
 Using the same sentence as above, iterate over each match and log it to the console.
 
