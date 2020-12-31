@@ -748,3 +748,39 @@ In this example, we use regex to capture all numbers in a string, and then sum t
 const txt = 'First number: 32, and a second number is 100. The last number is 15.'
 const sum = txt.match(/\d+/g).reduce((total, num) => total + parseInt(num), 0)
 ```
+
+### 8.7. Information about a Match
+
+Using the same sentence as above, retrieve the starting index for the match, the length of the match, and the actual match. This only applies to the first digit (32).
+
+```js
+const txt = 'First number: 32, and a second number is 100. The last number is 15.'
+
+const execArr = /\d+/.exec(txt)
+
+let start
+let length
+let match
+
+if (execArr) {
+  start = execArr.index
+  length = execArr[0].length
+  match = execArr[0]
+}
+```
+
+### 8.8. Iterate Over Matches
+
+Using the same sentence as above, iterate over each match and log it to the console.
+
+```js
+const txt = 'First number: 32, and a second number is 100. The last number is 15.'
+
+const regex = /\d+/g
+let match = regex.exec(txt)
+
+while (match) {
+  console.log(match[0])
+  match = regex.exec(txt)
+}
+```
