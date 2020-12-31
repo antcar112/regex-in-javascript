@@ -731,3 +731,11 @@ const str = 'Match together these words.'
 // match on 'words' but only when 'together' is before or after it at some point.
 const regex = /\b(?:together\W+(?:\w+\W+)*words)|(?:words\W+(?:\w+\W+)*together)\b/g
 ```
+
+### 8.6. Validating Dates
+
+Dates can have many different formats. In this example, we'll use the 'dd/mm/yyyy' format, but we also want to match on 'd/m/yy'.
+
+```js
+const dateRegex = /^(3[01]|[12]\d|0?\d)\/(1[0-2]|0?\d)\/((\d{2})?\d{2})$/g
+```
