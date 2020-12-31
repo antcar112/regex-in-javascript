@@ -6,7 +6,7 @@ A great way to test RegEx expressions is by using [RegEx Pal](https://www.regexp
 
 ## Table of Contents
 
-1. [Getting Started](#1-getting-started)
+1. [JavaScript Basics](#1-javascript-basics)
    1. [RegExp Object methods](#11-regexp-object-methods)
    2. [String Object methods](#12-string-object-methods)
    3. [Regular Expression Flags](#13-regular-expression-flags)
@@ -19,7 +19,7 @@ A great way to test RegEx expressions is by using [RegEx Pal](https://www.regexp
 8. [Unicode with RegEx](#8-unicode-with-regex)
 9. [Common Regular Expression Recipes](#9-common-regular-expression-recipes)
 
-## 1. Getting Started
+## 1. JavaScript Basics
 
 In JavaScript, Regular Expressions are Objects.
 
@@ -105,7 +105,7 @@ txt.split(/\s/)
 
 ### 1.3 Regular Expression Flags
 
-Flags can be added to RegEx in two ways
+Flags can be added to RegEx in two ways.
 
 ```js
 /pattern/flags
@@ -114,9 +114,12 @@ new RegExp("pattern", "flags)
 
 Common flags:
 
-- `/g` - global - match more than one occurance. Without global, only the first match is found
-- `/i` - case insensitive match, case doesn't matter
-- `/m` - multi-line match
+| Flag | Name             | Descirption                                                                   |
+| ---- | ---------------- | ----------------------------------------------------------------------------- |
+| `/g` | Global           | Match more than one occurance. Without global, only the first match is found. |
+| `/i` | Case insensitive | Match letters regardless of case used.                                        |
+| `/m` | Multiline        | Anchor characters will match over multiple lines.                             |
+| `/u` | Unicode          | support extended unicode (see [8.1 ES6 Unicode](#81-es6-unicode) for more)    |
 
 Can combine multiple flags (`/gi`)
 
@@ -537,7 +540,7 @@ There are two benefits to this new date expression.
 1. It forces the user to use the same seperator character ('/', '-' or '.' )
 2. It reduces duplication in the regular expression (`[-./]` was repeated)
 
-#### Non-capturing Group
+### Non-capturing Group
 
 We can make a group non-capturing by adding a `?:` to the start of it.
 
@@ -622,7 +625,7 @@ Unicode values can be used like any other character.
 const unicodeRegEx = /[\u0061-\u0067]/g
 ```
 
-### ES6 Unicode
+### 8.1 ES6 Unicode
 
 Some unicode characters require more than 4 hexidecimal characters.
 
